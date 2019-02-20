@@ -29,17 +29,26 @@
 Установка
 ===
 1. Установить зависимости
+
 pip install -r requirements.txt
 
+
 2. Скачать модель нейронной сети
+
 python -m spacy download en_core_web_sm
+
 Документация по языковому пакету https://spacy.io/models/en
 
+
 3. Установить переменные окружения
+
 export FLASK_ENV=development
+
 export FLASK_APP=data_extractor/main.py
 
+
 4. Запустить тестовый сервер flask'а
+
 flask run
 
 
