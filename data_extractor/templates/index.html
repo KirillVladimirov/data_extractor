@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <title>Named Entity Identification</title>
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="static/css/main.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+    <!--navbar navbar-expand-md navbar-dark fixed-top bg-dark-->
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Named Entity Identification</a>
+        <button aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation"
+                class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded"
+                data-target="#navbarResponsive"
+                data-toggle="collapse" type="button">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                       href="#formatter_section">Process</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#result_section">Result</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about_section">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- NLP process -->
+<section class="formatter" id="formatter_section">
+    <div class="container">
+        <form>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 errorholder">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 hint">
+                    <i class="fa fa-mail-forward fa-5x"></i>
+                    <br>
+                    <br>
+                    <p>Paste in text in selected language and away you go.</p>
+                </div>
+                <div class="col-md-8 col-md-offset-0">
+                    <div class="form-group">
+                        <label>Text Data</label>
+                        <div class="jsondataholder">
+                            <textarea class="form-control" data-gramm_editor="false" id="jsondata" name="jsondata"
+                                      rows="5"></textarea>
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-link btn-clear btn-sm" type="button"><i
+                                        class="fa fa-trash-o"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 options">
+                    <div class="form-group">
+                        <label>Language</label>
+                        <select class="form-control" id="jsonstandard" name="jsonstandard">
+                            <option selected="" value="1">EN</option>
+                            <option value="2">FR</option>
+                            <option value="3">RU</option>
+                        </select>
+                    </div>
+                    <i class="hidden-xs hidden-sm fa fa-mail-forward fa-5x fa-rotate-180"></i>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <button class="btn btn-action btn-lg" data-loading-text="<i class='fa fa-cog fa-spin'></i>"
+                            id="process"
+                            type="button">Process
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div> <!--/ .container -->
+</section>
+
+<section class="results" id="result_section">
+    <div class="container">
+        <h2 class="text-center text-uppercase">Result</h2>
+        <div class="row">
+            <div class="col-sm-12">
+                <pre id="json-display"></pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="bg-primary mb-0" id="about_section">
+    <div class="container">
+        <h2 class="text-center text-uppercase">About</h2>
+        <div class="row">
+            <div class="col-lg-4 ml-auto">
+                <p class="lead">Data Extractor is a simple web app for base named entity identification and
+                    classification it by categories.</p>
+            </div>
+            <div class="col-lg-4 mr-auto">
+                <p class="lead">Now the application processes the text only in English and is able to classify names,
+                    surnames, dates, countries, cities and sums of money.</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr class="c-table__row c-table__row--head">
+                        <th class="c-table__head-cell u-text-label">Type</th>
+                        <th class="c-table__head-cell u-text-label">Description</th>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>PERSON</code></td>
+                        <td class="c-table__cell u-text">People, including fictional.</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>NORP</code></td>
+                        <td class="c-table__cell u-text">Nationalities or religious or political groups.</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>FAC</code></td>
+                        <td class="c-table__cell u-text">Buildings, airports, highways, bridges, etc.</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>ORG</code></td>
+                        <td class="c-table__cell u-text">Companies, agencies, institutions, etc.</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>GPE</code></td>
+                        <td class="c-table__cell u-text">Countries, cities, states.</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>LOC</code></td>
+                        <td class="c-table__cell u-text">Non-GPE locations, mountain ranges, bodies of water.</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>PRODUCT</code></td>
+                        <td class="c-table__cell u-text">Objects, vehicles, foods, etc. (Not services.)</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>EVENT</code></td>
+                        <td class="c-table__cell u-text">Named hurricanes, battles, wars, sports events, etc.</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>WORK_OF_ART</code></td>
+                        <td class="c-table__cell u-text">Titles of books, songs, etc.</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>LAW</code></td>
+                        <td class="c-table__cell u-text">Named documents made into laws.</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>LANGUAGE</code></td>
+                        <td class="c-table__cell u-text">Any named language.</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>DATE</code></td>
+                        <td class="c-table__cell u-text">Absolute or relative dates or periods.</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>TIME</code></td>
+                        <td class="c-table__cell u-text">Times smaller than a day.</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>PERCENT</code></td>
+                        <td class="c-table__cell u-text">Percentage, including "%".</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>MONEY</code></td>
+                        <td class="c-table__cell u-text">Monetary values, including unit.</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>QUANTITY</code></td>
+                        <td class="c-table__cell u-text">Measurements, as of weight or distance.</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td
+                                class="c-table__cell u-text"><code>ORDINAL</code></td>
+                        <td class="c-table__cell u-text">"first", "second", etc.</td>
+                    </tr>
+                    <tr class="c-table__row">
+                        <td class="c-table__cell u-text"><code>CARDINAL</code></td>
+                        <td class="c-table__cell u-text">Numerals that do not fall under another type.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer text-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4">Around the Web</h4>
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                            <i class="fab fa-fw fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                            <i class="fab fa-fw fa-google-plus-g"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                            <i class="fab fa-fw fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                            <i class="fab fa-fw fa-linkedin-in"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn btn-outline-light btn-social text-center rounded-circle" href="#">
+                            <i class="fab fa-fw fa-dribbble"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="copyright py-4 text-center text-white">
+    <div class="container">
+        <small>Copyright &copy; Named Entity Identification 2019</small>
+    </div>
+</div>
+
+<div class="scroll-to-top d-lg-none position-fixed ">
+    <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</div>
+
+<script src="static/vendor/jquery/jquery.js"></script>
+<script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="static/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="static/js/jquery.json-editor.min.js"></script>
+<script src="static/js/main.js"></script>
+
+</body>
+
+</html>
